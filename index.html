@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>Juan & Giovanna · 31.10.2026</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="stars"></div>
+
+  <svg class="bg-planet" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <defs>
+      <radialGradient id="planetGrad" cx="35%" cy="32%" r="75%">
+        <stop offset="0%" stop-color="#6b5a8a"/>
+        <stop offset="55%" stop-color="#332a4a"/>
+        <stop offset="100%" stop-color="#120f1c"/>
+      </radialGradient>
+    </defs>
+    <circle cx="100" cy="100" r="95" fill="url(#planetGrad)"/>
+  </svg>
+
+  <svg class="bg-suns" viewBox="0 0 160 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <circle cx="55" cy="58" r="26" fill="#e8c15a"/>
+    <circle cx="92" cy="66" r="17" fill="#e0742a"/>
+  </svg>
+
+  <svg class="bg-ship bg-tie" viewBox="0 0 120 80" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <rect x="4" y="10" width="24" height="60" rx="3" fill="#cfd3da"/>
+    <rect x="92" y="10" width="24" height="60" rx="3" fill="#cfd3da"/>
+    <line x1="28" y1="40" x2="48" y2="40" stroke="#cfd3da" stroke-width="3"/>
+    <line x1="72" y1="40" x2="92" y2="40" stroke="#cfd3da" stroke-width="3"/>
+    <circle cx="60" cy="40" r="14" fill="#cfd3da"/>
+    <circle cx="60" cy="40" r="9" fill="#05050a"/>
+  </svg>
+
+  <svg class="bg-ship bg-xwing" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M50,50 L14,14 L22,10 L58,46 Z" fill="#d8dade"/>
+    <path d="M50,50 L86,14 L78,10 L42,46 Z" fill="#d8dade"/>
+    <path d="M50,50 L14,86 L22,90 L58,54 Z" fill="#d8dade"/>
+    <path d="M50,50 L86,86 L78,90 L42,54 Z" fill="#d8dade"/>
+    <circle cx="50" cy="50" r="9" fill="#d8dade"/>
+  </svg>
+
+  <main id="app">
+    <section id="intro" class="screen">
+      <p class="eyebrow">Hace mucho tiempo, en una galaxia no tan lejana...</p>
+      <h1>Juan &amp; Giovanna</h1>
+      <p class="date">¡Hoy celebramos nuestra boda!</p>
+      <button id="reveal-btn" class="saber-btn">
+        <span class="saber"></span>
+        Toca la Fuerza
+      </button>
+    </section>
+
+    <section id="card" class="screen hidden">
+      <div class="icon-wrap">
+        <div id="icon-slot"></div>
+      </div>
+      <h2 id="char-name"></h2>
+      <p id="char-line" class="line"></p>
+      <p id="char-translation" class="translation"></p>
+      <div class="actions">
+        <button id="replay-btn"><span class="blade blade-blue"></span>Repetir sonido</button>
+        <button id="again-btn"><span class="blade blade-green"></span>Otro personaje</button>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Que la Fuerza los acompañe en esta celebración</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

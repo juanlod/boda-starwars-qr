@@ -1,0 +1,298 @@
+:root {
+  --bg: #05050a;
+  --gold: #e8c15a;
+  --white: #f4f4f6;
+  --muted: #9a9aa8;
+  --blue: #5ac8e8;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  height: 100%;
+  background: var(--bg);
+  color: var(--white);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  overflow-x: hidden;
+}
+
+.stars {
+  position: fixed;
+  inset: 0;
+  background-image:
+    radial-gradient(1px 1px at 10% 20%, #fff, transparent),
+    radial-gradient(1px 1px at 80% 10%, #fff, transparent),
+    radial-gradient(1px 1px at 30% 70%, #fff, transparent),
+    radial-gradient(1px 1px at 60% 40%, #fff, transparent),
+    radial-gradient(1px 1px at 90% 80%, #fff, transparent),
+    radial-gradient(1px 1px at 45% 90%, #fff, transparent),
+    radial-gradient(1px 1px at 15% 55%, #fff, transparent),
+    radial-gradient(1px 1px at 70% 60%, #fff, transparent);
+  background-repeat: repeat;
+  background-size: 400px 400px;
+  opacity: 0.6;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.bg-planet {
+  position: fixed;
+  top: -70px;
+  right: -70px;
+  width: 260px;
+  height: 260px;
+  opacity: 0.55;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.bg-suns {
+  position: fixed;
+  bottom: 30px;
+  left: -25px;
+  width: 190px;
+  opacity: 0.45;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.bg-ship {
+  position: fixed;
+  left: 0;
+  width: 60px;
+  opacity: 0.28;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.bg-tie {
+  top: 22%;
+  animation: driftTie 140s linear infinite;
+}
+
+.bg-xwing {
+  top: 62%;
+  width: 46px;
+  animation: driftXwing 165s linear infinite;
+}
+
+@keyframes driftTie {
+  0% { transform: translate(-15vw, 0) rotate(-5deg); opacity: 0; }
+  8% { opacity: 0.28; }
+  50% { transform: translate(60vw, 12vh) rotate(-3deg); }
+  92% { opacity: 0.28; }
+  100% { transform: translate(130vw, -6vh) rotate(-7deg); opacity: 0; }
+}
+
+/* Flies the opposite direction from the TIE fighter, with a slow bank. */
+@keyframes driftXwing {
+  0% { transform: translate(115vw, 0) rotate(8deg); opacity: 0; }
+  8% { opacity: 0.28; }
+  50% { transform: translate(45vw, -10vh) rotate(-10deg); }
+  92% { opacity: 0.28; }
+  100% { transform: translate(-25vw, 6vh) rotate(4deg); opacity: 0; }
+}
+
+main#app {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.screen {
+  width: 100%;
+  max-width: 420px;
+  text-align: center;
+}
+
+.hidden { display: none; }
+
+.eyebrow {
+  color: var(--gold);
+  letter-spacing: 0.05em;
+  font-size: 0.85rem;
+  margin-bottom: 8px;
+}
+
+h1 {
+  font-size: 2.4rem;
+  margin: 0 0 8px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.date {
+  color: var(--muted);
+  font-size: 1rem;
+  margin-bottom: 40px;
+}
+
+.saber-btn {
+  background: transparent;
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  padding: 14px 28px;
+  border-radius: 999px;
+  font-size: 1rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.15s ease;
+}
+
+.saber-btn:active {
+  background: rgba(232, 193, 90, 0.15);
+  transform: scale(0.97);
+}
+
+/* Lightsaber blade: a glowing bar that hums (flickers) like it's idling,
+   and flares brighter/taller on tap like it's being ignited. */
+.saber {
+  width: 3px;
+  height: 20px;
+  border-radius: 2px;
+  background: var(--blue);
+  box-shadow: 0 0 6px 1px var(--blue), 0 0 16px 4px rgba(90, 198, 232, 0.55);
+  animation: saberHum 2.2s ease-in-out infinite;
+  transition: height 0.15s ease, box-shadow 0.15s ease;
+}
+
+.saber-btn:active .saber {
+  height: 26px;
+  box-shadow: 0 0 10px 3px var(--blue), 0 0 26px 8px rgba(90, 198, 232, 0.85);
+}
+
+@keyframes saberHum {
+  0%, 100% { opacity: 1; }
+  45% { opacity: 0.92; }
+  50% { opacity: 0.7; }
+  55% { opacity: 0.95; }
+  80% { opacity: 1; }
+}
+
+.blade {
+  display: inline-block;
+  width: 3px;
+  height: 14px;
+  border-radius: 2px;
+  animation: saberHum 2.4s ease-in-out infinite;
+}
+
+.blade-blue {
+  background: var(--blue);
+  box-shadow: 0 0 5px 1px var(--blue), 0 0 12px 3px rgba(90, 198, 232, 0.5);
+}
+
+.blade-green {
+  background: #6fe07a;
+  box-shadow: 0 0 5px 1px #6fe07a, 0 0 12px 3px rgba(111, 224, 122, 0.5);
+}
+
+/* While a sound is playing, the buttons are disabled — make the blades hum
+   faster, like the saber is "talking" instead of just idling. */
+.actions button:disabled .blade {
+  animation: saberActive 0.5s ease-in-out infinite;
+}
+
+@keyframes saberActive {
+  0%, 100% { opacity: 1; transform: scaleY(1); }
+  50% { opacity: 0.55; transform: scaleY(0.8); }
+}
+
+.icon-wrap {
+  position: relative;
+  width: 140px;
+  height: 140px;
+  margin: 0 auto 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon-wrap::before {
+  content: "";
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.08), transparent 70%);
+  z-index: -1;
+}
+
+.icon-wrap svg { width: 100%; height: 100%; }
+
+#card.screen h2 {
+  font-size: 1.6rem;
+  margin: 0 0 14px;
+  color: var(--gold);
+  font-weight: 600;
+}
+
+.line {
+  font-size: 1.05rem;
+  line-height: 1.5;
+  margin: 0 0 10px;
+  min-height: 1.5em;
+}
+
+.translation {
+  color: var(--muted);
+  font-size: 0.9rem;
+  font-style: italic;
+  margin: 0 0 30px;
+  line-height: 1.4;
+}
+
+.actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.actions button {
+  background: rgba(244, 244, 246, 0.06);
+  border: 1px solid rgba(244, 244, 246, 0.2);
+  color: var(--white);
+  padding: 10px 18px;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  transition: background 0.2s ease, transform 0.15s ease;
+}
+
+.actions button:active {
+  background: rgba(244, 244, 246, 0.15);
+  transform: scale(0.97);
+}
+
+.actions button:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+footer {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: 16px;
+  color: var(--muted);
+  font-size: 0.75rem;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+#card.screen:not(.hidden) {
+  animation: fadeUp 0.5s ease;
+}
