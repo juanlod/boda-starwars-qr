@@ -139,6 +139,47 @@ html, body {
   100% { transform: translateX(185vw) rotate(-0.5deg); opacity: 0; }
 }
 
+/* A single turbolaser shot + impact flash, fired once partway through the
+   Destroyer's pass — a rare accent tied to that event, not a constant or
+   random effect. Positioned dynamically from app.js. */
+.laser-bolt {
+  position: fixed;
+  height: 2px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, transparent, #8CFF8C, #d9ffd9, #8CFF8C, transparent);
+  box-shadow: 0 0 6px 2px rgba(140, 255, 140, 0.7);
+  transform-origin: left center;
+  z-index: 0;
+  pointer-events: none;
+  animation: laserShoot 0.32s ease-in forwards;
+}
+
+@keyframes laserShoot {
+  0% { opacity: 0; transform: scaleX(0); }
+  20% { opacity: 1; }
+  80% { opacity: 1; }
+  100% { opacity: 0; transform: scaleX(1); }
+}
+
+.laser-impact {
+  position: fixed;
+  width: 26px;
+  height: 26px;
+  margin-left: -13px;
+  margin-top: -13px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 244, 200, 0.95) 0%, rgba(255, 178, 90, 0.65) 40%, transparent 72%);
+  z-index: 0;
+  pointer-events: none;
+  animation: laserImpact 0.45s ease-out forwards;
+}
+
+@keyframes laserImpact {
+  0% { transform: scale(0.2); opacity: 0; }
+  35% { transform: scale(1); opacity: 1; }
+  100% { transform: scale(1.7); opacity: 0; }
+}
+
 main#app {
   position: relative;
   z-index: 1;

@@ -282,11 +282,48 @@ function passDestroyer() {
   destroyerEl.classList.remove("pass");
   void destroyerEl.offsetWidth; // restart the animation each time
   destroyerEl.classList.add("pass");
+  // One turbolaser shot, timed to fire roughly when the ship is mid-crossing.
+  setTimeout(fireLaserFromDestroyer, 11500);
 }
 
 destroyerEl.addEventListener("animationend", () => {
   destroyerEl.classList.remove("pass");
 });
+
+// A single laser bolt + impact flash fired from wherever the Destroyer
+// currently is, angled down toward a nearby random point. Elements are
+// created on demand and removed once their animation finishes.
+function fireLaserFromDestroyer() {
+  const rect = destroyerEl.getBoundingClientRect();
+  if (rect.width === 0) return; // ship isn't actually on screen right now
+
+  const startX = rect.left + rect.width * 0.9;
+  const startY = rect.top + rect.height * 0.55;
+  const targetX = startX + 50 + Math.random() * 70;
+  const targetY = startY + 60 + Math.random() * 100;
+  const dx = targetX - startX;
+  const dy = targetY - startY;
+  const length = Math.sqrt(dx * dx + dy * dy);
+  const angle = (Math.atan2(dy, dx) * 180) / Math.PI;
+
+  const bolt = document.createElement("div");
+  bolt.className = "laser-bolt";
+  bolt.style.left = `${startX}px`;
+  bolt.style.top = `${startY}px`;
+  bolt.style.width = `${length}px`;
+  bolt.style.transform = `rotate(${angle}deg)`;
+  document.body.appendChild(bolt);
+  setTimeout(() => bolt.remove(), 400);
+
+  setTimeout(() => {
+    const impact = document.createElement("div");
+    impact.className = "laser-impact";
+    impact.style.left = `${targetX}px`;
+    impact.style.top = `${targetY}px`;
+    document.body.appendChild(impact);
+    setTimeout(() => impact.remove(), 500);
+  }, 280);
+}
 
 setTimeout(passDestroyer, 12000);
 setInterval(passDestroyer, 90000);
