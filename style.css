@@ -77,6 +77,22 @@ html, body {
   animation: driftXwing 165s linear infinite;
 }
 
+/* Massive and unhurried — no rotation/bobbing like the little fighters,
+   just a slow, ominous drift from the right side of the sky to the left. */
+.bg-deathstar {
+  top: 40%;
+  width: 100px;
+  opacity: 0.22;
+  animation: driftDeathStar 210s linear infinite;
+}
+
+@keyframes driftDeathStar {
+  0% { transform: translateX(115vw); opacity: 0; }
+  6% { opacity: 0.22; }
+  94% { opacity: 0.22; }
+  100% { transform: translateX(-30vw); opacity: 0; }
+}
+
 @keyframes driftTie {
   0% { transform: translate(-15vw, 0) rotate(-5deg); opacity: 0; }
   8% { opacity: 0.28; }
