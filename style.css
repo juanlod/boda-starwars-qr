@@ -141,16 +141,25 @@ html, body {
 
 /* A single turbolaser shot + impact flash, fired once partway through the
    Destroyer's pass — a rare accent tied to that event, not a constant or
-   random effect. Positioned dynamically from app.js. */
-.laser-bolt {
+   random effect. Positioned dynamically from app.js.
+   The wrapper carries the static rotation (pointing the beam at its target);
+   the inner element carries the CSS-animated scale/opacity. Putting both on
+   the same element doesn't work — an animation that targets `transform`
+   overrides any inline `transform` on that same element entirely, so the
+   rotation would just get silently dropped. */
+.laser-bolt-wrap {
   position: fixed;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.laser-bolt {
+  width: 100%;
   height: 2px;
   border-radius: 2px;
   background: linear-gradient(90deg, transparent, #8CFF8C, #d9ffd9, #8CFF8C, transparent);
   box-shadow: 0 0 6px 2px rgba(140, 255, 140, 0.7);
   transform-origin: left center;
-  z-index: 0;
-  pointer-events: none;
   animation: laserShoot 0.32s ease-in forwards;
 }
 

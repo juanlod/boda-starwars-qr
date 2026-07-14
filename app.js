@@ -306,14 +306,21 @@ function fireLaserFromDestroyer() {
   const length = Math.sqrt(dx * dx + dy * dy);
   const angle = (Math.atan2(dy, dx) * 180) / Math.PI;
 
+  // Wrapper holds the static rotation; the inner .laser-bolt gets the
+  // CSS-animated scale/opacity (see the CSS comment for why these can't
+  // be the same element).
+  const wrap = document.createElement("div");
+  wrap.className = "laser-bolt-wrap";
+  wrap.style.left = `${startX}px`;
+  wrap.style.top = `${startY}px`;
+  wrap.style.width = `${length}px`;
+  wrap.style.transform = `rotate(${angle}deg)`;
   const bolt = document.createElement("div");
   bolt.className = "laser-bolt";
-  bolt.style.left = `${startX}px`;
-  bolt.style.top = `${startY}px`;
-  bolt.style.width = `${length}px`;
-  bolt.style.transform = `rotate(${angle}deg)`;
-  document.body.appendChild(bolt);
-  setTimeout(() => bolt.remove(), 400);
+  wrap.appendChild(bolt);
+  document.body.appendChild(wrap);
+  void wrap.offsetWidth; // make sure the animation is recognized as fresh
+  setTimeout(() => wrap.remove(), 400);
 
   setTimeout(() => {
     const impact = document.createElement("div");
@@ -321,6 +328,7 @@ function fireLaserFromDestroyer() {
     impact.style.left = `${targetX}px`;
     impact.style.top = `${targetY}px`;
     document.body.appendChild(impact);
+    void impact.offsetWidth;
     setTimeout(() => impact.remove(), 500);
   }, 280);
 }
