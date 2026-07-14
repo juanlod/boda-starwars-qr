@@ -80,10 +80,10 @@ html, body {
 /* Massive and unhurried — no rotation/bobbing like the little fighters,
    just a slow, ominous drift from the right side of the sky to the left. */
 .bg-deathstar {
-  top: 40%;
+  top: 80%;
   width: 100px;
   opacity: 0.22;
-  animation: driftDeathStar 210s linear infinite;
+  animation: driftDeathStar 400s linear infinite;
 }
 
 @keyframes driftDeathStar {
