@@ -83,7 +83,7 @@ html, body {
   top: 80%;
   width: 100px;
   opacity: 0.22;
-  animation: driftDeathStar 400s linear infinite;
+  animation: driftDeathStar 700s linear infinite;
 }
 
 @keyframes driftDeathStar {
