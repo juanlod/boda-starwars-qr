@@ -83,14 +83,17 @@ html, body {
   top: 80%;
   width: 100px;
   opacity: 0.22;
-  animation: driftDeathStar 700s linear infinite;
+  animation: driftDeathStar 280s linear infinite;
 }
 
 @keyframes driftDeathStar {
-  0% { transform: translateX(115vw); opacity: 0; }
-  6% { opacity: 0.22; }
-  94% { opacity: 0.22; }
-  100% { transform: translateX(-30vw); opacity: 0; }
+  /* Starts right at the edge (not far off-screen) so it enters the frame
+     within a few seconds instead of after a long invisible pre-roll —
+     the slow feel comes from the crossing itself, not from a long wait. */
+  0% { transform: translateX(100vw); opacity: 0; }
+  2% { opacity: 0.22; }
+  96% { opacity: 0.22; }
+  100% { transform: translateX(-15vw); opacity: 0; }
 }
 
 @keyframes driftTie {
