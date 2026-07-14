@@ -194,17 +194,6 @@ h1 {
   box-shadow: 0 0 5px 1px #6fe07a, 0 0 12px 3px rgba(111, 224, 122, 0.5);
 }
 
-/* While a sound is playing, the buttons are disabled — make the blades hum
-   faster, like the saber is "talking" instead of just idling. */
-.actions button:disabled .blade {
-  animation: saberActive 0.5s ease-in-out infinite;
-}
-
-@keyframes saberActive {
-  0%, 100% { opacity: 1; transform: scaleY(1); }
-  50% { opacity: 0.55; transform: scaleY(0.8); }
-}
-
 .icon-wrap {
   position: relative;
   width: 140px;
@@ -253,6 +242,16 @@ h1 {
   gap: 12px;
   justify-content: center;
   flex-wrap: wrap;
+  min-height: 41px;
+  opacity: 1;
+  transition: opacity 0.35s ease;
+}
+
+/* While a clip is playing, the buttons are fully hidden instead of just
+   greyed out — they fade back in once the sound finishes. */
+.actions.playing {
+  opacity: 0;
+  pointer-events: none;
 }
 
 .actions button {
@@ -275,7 +274,6 @@ h1 {
 }
 
 .actions button:disabled {
-  opacity: 0.35;
   cursor: not-allowed;
 }
 

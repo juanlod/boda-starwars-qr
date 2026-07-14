@@ -213,6 +213,7 @@ const translationEl = document.getElementById("char-translation");
 const revealBtn = document.getElementById("reveal-btn");
 const replayBtn = document.getElementById("replay-btn");
 const againBtn = document.getElementById("again-btn");
+const actionsEl = document.getElementById("actions");
 
 let current = null;
 
@@ -224,6 +225,7 @@ function pickCharacter(excludeId) {
 function setPlaying(isPlaying) {
   replayBtn.disabled = isPlaying;
   againBtn.disabled = isPlaying;
+  actionsEl.classList.toggle("playing", isPlaying);
 }
 
 function withHardTimeout(promise, ms) {
