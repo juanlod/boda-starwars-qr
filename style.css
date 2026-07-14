@@ -94,6 +94,32 @@ html, body {
   100% { transform: translate(-25vw, 6vh) rotate(4deg); opacity: 0; }
 }
 
+/* Imperial Star Destroyer: much bigger and slower than the little fighters,
+   and doesn't loop — it's triggered every so often from app.js, like the
+   opening shot of A New Hope drifting overhead. */
+.bg-destroyer {
+  position: fixed;
+  top: 7%;
+  left: -55vw;
+  width: 60vw;
+  max-width: 620px;
+  min-width: 260px;
+  opacity: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.bg-destroyer.pass {
+  animation: destroyerPass 26s linear;
+}
+
+@keyframes destroyerPass {
+  0% { transform: translateX(0) rotate(0.5deg); opacity: 0; }
+  10% { opacity: 0.24; }
+  90% { opacity: 0.24; }
+  100% { transform: translateX(185vw) rotate(-0.5deg); opacity: 0; }
+}
+
 main#app {
   position: relative;
   z-index: 1;

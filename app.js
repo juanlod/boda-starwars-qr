@@ -271,3 +271,22 @@ againBtn.addEventListener("click", () => {
   cardEl.classList.remove("hidden");
   showCharacter(pickCharacter(current ? current.id : null));
 });
+
+// ---------- Imperial Star Destroyer ----------
+// Passes overhead every so often — unlike the TIE fighter/X-wing, which
+// loop continuously, this one is a periodic one-off event, kicked off from
+// JS so its timing is independent of the little fighters.
+const destroyerEl = document.getElementById("bg-destroyer");
+
+function passDestroyer() {
+  destroyerEl.classList.remove("pass");
+  void destroyerEl.offsetWidth; // restart the animation each time
+  destroyerEl.classList.add("pass");
+}
+
+destroyerEl.addEventListener("animationend", () => {
+  destroyerEl.classList.remove("pass");
+});
+
+setTimeout(passDestroyer, 12000);
+setInterval(passDestroyer, 90000);
